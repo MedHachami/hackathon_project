@@ -7,7 +7,7 @@ import { AuthGuard } from './modules/auth/_services/auth.guard';
 const routes: Routes = [
   {
     path: '', 
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/dashboard/dashboard.module').then((m)=> m.DashboardModule) 
   },
@@ -21,14 +21,14 @@ const routes: Routes = [
   },
   {
     path: 'slider', 
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/slider/slider.module').then((m)=> m.SliderModule) 
   },
 
   {
     path: 'users', 
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/users/users.module').then((m)=> m.UsersModule) 
   },
@@ -42,14 +42,14 @@ const routes: Routes = [
   },
   {
     path: 'cupon', 
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/cupones/cupones.module').then((m)=> m.CuponesModule) 
   },
 
   {
     path: 'discount', 
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/discount/discount.module').then((m)=> m.DiscountModule) 
   },

@@ -10,16 +10,15 @@ use App\Http\Controllers\student\StudentProfileController;
 
 
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+
+
+use App\Http\Controllers\categorie\CategorieController;
+
+
+
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -29,9 +28,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout')->middleware('auth:api');
 
-
     Route::post('login', 'login');
     Route::post('register', 'register');
+    Route::post("admin_login", "adminlogin");
 });
 
 
@@ -39,6 +38,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware(['check.role:admin'])->group(function () {
     Route::controller(AdminAuthUsers::class)->group(function () {
+        Route::resource('categorie', CategorieController::class);
 
         Route::post('AdminAuth', 'register');
     });

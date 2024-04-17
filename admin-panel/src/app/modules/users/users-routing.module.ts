@@ -5,6 +5,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { DetailComponent } from './detail/detail.component';
+import { NewUserComponent } from './newusers/newusers.component';
+
+
 
  const routes: Routes = [
   {
@@ -13,6 +16,9 @@ import { DetailComponent } from './detail/detail.component';
     children:[
       {
         path:'profile', component:ProfileComponent
+      },
+      {
+        path:'add', component:NewUserComponent
       },
 
       {

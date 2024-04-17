@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
+// import { UserAddComponent } from './user-add/user-add.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -19,7 +20,8 @@ import { DetailComponent } from './detail/detail.component';
     UserlistComponent,
     ProfileComponent,
     SettingsComponent,
-    DetailComponent
+    DetailComponent,
+    // UserAddComponent
   ],
   imports: [
     CommonModule,

@@ -27,9 +27,9 @@ export class DashboardComponent {
   ){}
 
   ngOnInit(): void{
-    if(!this.authService.user && !this.authService.token){
-      this.router.navigate(["/auth/login"])
-    }
+    // if(!this.authService.user && !this.authService.token){
+    //   this.router.navigate(["/auth/login"])
+    // }
 
     this.dashboardService.getUsersCount().subscribe(data=>{
       if(data){

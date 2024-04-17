@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminAuthUsers;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\categorie\CategorieController;
 use App\Http\Controllers\student\HistoryController;
@@ -59,3 +60,4 @@ Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
 
 Route::get("ranking", [RankingController::class, "handle"]);
 
+Route::get("dashboard/statistics", [DashboardController::class, "statistics"]);

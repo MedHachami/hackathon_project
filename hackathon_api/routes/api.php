@@ -37,6 +37,7 @@ Route::resource('categories', CategorieController::class);
 
 
 
+Route::resource('categorie', CategorieController::class);
 Route::middleware(['check.role:admin'])->group(function () {
     // Route::resource('categories', CategorieController::class);
 

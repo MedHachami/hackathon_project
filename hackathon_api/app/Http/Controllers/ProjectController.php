@@ -49,7 +49,7 @@ class ProjectController extends BaseApiController
                 "name" => $validatedData["name"],
                 "description" => $validatedData["description"],
                 "link" => $validatedData["link"],
-                "user_id" => auth()->id(),
+                "student_id" => auth()->id(),
                 "category_id" => 1
             ]);
 

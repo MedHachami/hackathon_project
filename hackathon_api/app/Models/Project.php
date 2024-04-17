@@ -13,7 +13,7 @@ class Project extends Model
         "name",
         "description",
         "link",
-        "user_id",
+        "student_id",
         "category_id"
     ];
     public function ScopeFilter($query, array $filters)
@@ -35,5 +35,10 @@ class Project extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, "category_id");
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(Rating::class);
     }
 }

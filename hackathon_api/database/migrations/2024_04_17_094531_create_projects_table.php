@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("link");
             $table->foreignId("category_id")
                 ->constrained("categories");
-            $table->foreignId("user_id")
+            $table->foreignId("student_id")
                 ->constrained("users");
             $table->softDeletes();
             $table->timestamps();

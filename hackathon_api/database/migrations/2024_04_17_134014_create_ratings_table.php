@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('note');
             $table->string('comment');
-            $table->foreignId("project_id")->constrained("projects");
+            $table->foreignId("project_id")->constrained("projects")->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId("teacher_id")->constrained("users")->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

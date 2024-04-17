@@ -12,9 +12,11 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class StudentProfileController extends Controller
 {
-    public function UpdateProfil(CreatUpdateProfile $request){
-       $userUpdate = $request->validated();
+    public function UpdateProfil(CreatUpdateProfile $request)
+    {
+        $userUpdate = $request->validated();
         $user = JWTAuth::user();
+
 
         User::where('id' , $user->id)->update([
             'name' => $userUpdate["name"],
@@ -27,13 +29,25 @@ class StudentProfileController extends Controller
 
         ]);
     }
-    public function UpdatePassword(CreatResetPassword $request){
+    public function IndexUser()
+    {
+        $user = JWTAuth::user();
+        $userData = User::where('id', $user->id)->first();
+
+        return response()->json([
+            'statut' => 'success',
+            'userData' => $userData,
+        ], 200);
+    }
+    public function UpdatePassword(CreatResetPassword $request)
+    {
         try {
             $passwordUpdate = $request->validated();
 
             $user = JWTAuth::user();
 
-            User::where('id' , $user->id)->update([
+            User::where('id', $user->id)->update([
+
                 'password' => Hash::make($passwordUpdate['password']),
             ]);
 

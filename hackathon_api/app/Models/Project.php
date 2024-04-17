@@ -16,7 +16,17 @@ class Project extends Model
         "user_id",
         "category_id"
     ];
+    public function ScopeFilter($query, array $filters)
+    {
+        $query->when($filters["search"] ?? false, fn($query, $search) => $query
+            ->where("name", "like", "%" . $search . "%")
+            ->orWhere("description", "like", "%" . $search . "%"));
 
+        $query->when($filters["category"] ?? false, fn($query, $category) => $query
+            ->whereHas('category', fn($query) => $query->where("name", $category)
+            )
+        );
+    }
     public function media()
     {
         return $this->morphMany(Media::class, "mediaable");

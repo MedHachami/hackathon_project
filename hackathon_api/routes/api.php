@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\admin\AdminAuthUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\student\StudentProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\admin\AdminAuthUsers;
 use App\Http\Controllers\teacher\TeacherRatingController;
+use App\Http\Controllers\student\StudentProfileController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,9 @@ Route::middleware(['check.role:teacher'])->group(function () {
     Route::controller(TeacherRatingController::class)->group(function () {
 
         Route::post('CreateRating', 'CreateRating');
-        Route::get('EditRating', 'EditRating');
-        Route::put('UpdateRating', 'UpdateRating');
+        Route::get('EditRating/{id}', 'EditRating');
+        Route::put('UpdateRating/{id}', 'UpdateRating');
+        Route::delete('DeleteRating/{id}', 'DeleteRating');
         
     });
 });
@@ -58,5 +60,8 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdateProfil', 'UpdateProfil');
         Route::put('UpdatePassword', 'UpdatePassword');
     });
+
     Route::apiResource("projects", ProjectController::class);
 });
+Route::post("filter", [ProjectController::class, "filter"]);
+

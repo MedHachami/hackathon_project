@@ -16,7 +16,8 @@ class TeacherRatingController extends Controller
 
         rating::create([
             'note' => $request->note,
-            'comment' => $request->comment
+            'comment' => $request->comment,
+            'project_id' => $request->project_id
 
         ]);
         return response()->json([
@@ -52,5 +53,16 @@ class TeacherRatingController extends Controller
             'Rating' => $Rating,
 
         ]);
+    }
+    public function DeleteRating($id){
+
+        $rating = rating::findOrFail($id);
+        $rating->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'rate deleted successfully',
+
+        ], 200);
     }
 }

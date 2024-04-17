@@ -32,7 +32,7 @@ Route::middleware(['check.role:admin'])->group(function () {
         Route::post('AdminAuth', 'register');
     });
 });
-Route::middleware(['check.role:teacher'])->group(function () {
+//Route::middleware(['check.role:teacher'])->group(function () {
     Route::controller(TeacherRatingController::class)->group(function () {
 
         Route::post('CreateRating', 'CreateRating');
@@ -41,7 +41,7 @@ Route::middleware(['check.role:teacher'])->group(function () {
         Route::delete('DeleteRating/{id}', 'DeleteRating');
 
     });
-});
+//});
 
 Route::middleware(['check.role:student'])->group(function () {
     Route::controller(StudentProfileController::class)->group(function () {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminAuthUsers;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\categorie\CategorieController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\student\StudentProfileController;
@@ -49,6 +50,7 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdateProfil', 'UpdateProfil');
         Route::put('UpdatePassword', 'UpdatePassword');
     });
+        Route::get("history", [HistoryController::class, "index"]);
 
     Route::apiResource("projects", ProjectController::class);
 });

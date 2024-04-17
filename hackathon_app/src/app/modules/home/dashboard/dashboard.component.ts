@@ -11,26 +11,59 @@ import { HomeService } from '../_services/home.service';
 })
 export class DashboardComponent {
 
-  categories:any[] =[];
-  URL=URL_BACKEND;
-  products:any;
-  productsb:any;
-  
+  categories: any[] = [];
+  projects: any[] = [];
+  filteredProjects: any[] = [];
+  searchTerm: string = '';
+  selectedCategoryId: number | null = null;
+  URL = URL_BACKEND;
+
   constructor(
-    public router:Router,
-    public homeService:HomeService
-  ){}
+    public router: Router,
+    public homeService: HomeService
+  ) { }
 
-  ngOnInit(){
-    this.homeService.home().subscribe((resp:any)=>{
-      console.log(resp);
-      this.categories = resp['categories'];
-      this.products = resp['product_a'];
-      this.productsb = resp['product_b'];
+  ngOnInit() {
+    this.loadProjects();
+    this.loadCategories();
+  }
 
-    })
+  loadProjects() {
+    this.homeService.getAllProjects().subscribe(
+      (data) => {
+        this.projects = data.data;
+        this.filteredProjects = this.projects; // Initialize filteredProjects with all projects
+      },
+      (error) => {
+        console.error('Error fetching projects:', error);
+      }
+    );
+  }
 
-  
+  loadCategories() {
+    this.homeService.getAllCategories().subscribe(
+      (data) => {
+        this.categories = data.categories;
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
+
+  filterProjects() {
+    // Apply filters based on search term and selected category
+    this.filteredProjects = this.projects.filter(project => {
+      const matchSearch = this.searchTerm ? project.name.toLowerCase().includes(this.searchTerm.toLowerCase()) : true;
+      const matchCategory = this.selectedCategoryId ? project.category_id === this.selectedCategoryId : true;
+      return matchSearch && matchCategory;
+    });
+  }
+
+  clearFilters() {
+    this.searchTerm = '';
+    this.selectedCategoryId = null;
+    this.filterProjects();
   }
 
 }

@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\student;
 
+use App\Http\Controllers\BaseApiController;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use App\Services\Contracts\MediaServiceInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
+use Illuminate\Http\Request;
 class ProjectController extends BaseApiController
 {
     use AuthorizesRequests;
@@ -40,21 +41,20 @@ class ProjectController extends BaseApiController
         }
     }
 
-    public function store(StoreProjectRequest $request)
+    public function store(Request $request)
     {
         try {
-            $validatedData = $request->validated();
+            // $validatedData = $request->validated();
 
             $project = Project::create([
-                "name" => $validatedData["name"],
-                "description" => $validatedData["description"],
-                "link" => $validatedData["link"],
-                "user_id" => auth()->id(),
-                "category_id" => 1
+                "name" => $request->name,
+                "description" => $request->description,
+                "link" => $request->link,
+                "student_id" => auth()->id(),
+                "category_id" => $request->category_id,
             ]);
 
-            $this->service->store($validatedData["media"], $project);
-
+            $this->service->store($request->media, $project);
             return $this->sendResponse(
                 message: "the project was created successfully",
                 result: new ProjectResource($project),
@@ -68,7 +68,6 @@ class ProjectController extends BaseApiController
     public function update(UpdateProjectRequest $request, Project $project)
     {
         try {
-
             $validatedData = $request->validated();
             $project->update([
                 "name" => $validatedData["name"],
@@ -100,11 +99,10 @@ class ProjectController extends BaseApiController
     public function restore($id)
     {
         try {
-            $project = Project::withTrashed()->where("id", $id)->restore();
-            $this->authorize("delete", $project);
+            Project::withTrashed()->where("id", $id)->restore();
             return $this->sendResponse(message: "project restored successfully");
         } catch (\Exception $e) {
-            return $this->sendError("could not restore project");
+            return $this->sendError($e->getMessage());
         }
     }
 

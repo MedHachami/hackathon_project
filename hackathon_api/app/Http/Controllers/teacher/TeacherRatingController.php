@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\teacher;
 
-use App\Models\rating;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatRatingRequest;
 use App\Http\Requests\CreatUpdateRatingRequest;
+use App\Models\Project;
+use App\Models\Rating;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class TeacherRatingController extends Controller
@@ -13,24 +14,29 @@ class TeacherRatingController extends Controller
 
     public function CreateRating(CreatRatingRequest $request)
     {
-        $Rating = $request->validated();
+        $validatedData = $request->validated();
         $teacher = JWTAuth::user();
 
-        rating::create([
-            'note' => $request->note,
-            'comment' => $request->comment,
+        $rating = Rating::create([
+            'note' => $validatedData["note"],
+            'comment' => $validatedData["comment"],
             'teacher_id' => $teacher->id,
-            'project_id' => $request->project_id
+            'project_id' => $validatedData["project_id"]
         ]);
+
+        Project::find($validatedData["project_id"])
+            ->update(["is_rated" => true]);
+
         return response()->json([
             'status' => 'success',
             'message' => 'Rate Created successfully',
-            'Rating' => $Rating,
+            'Rating' => $rating,
         ]);
     }
+
     public function EditRating($id)
     {
-        $rating = rating::where('project_id', $id)->first();
+        $rating = Rating::where('project_id', $id)->first();
         return response()->json([
             'statut' => 'success',
             'rating' => $rating,
@@ -40,9 +46,7 @@ class TeacherRatingController extends Controller
     public function UpdateRating($id, CreatUpdateRatingRequest $request)
     {
         $Rating = $request->validated();
-
-
-        rating::where('project_id', $id)->update([
+        Rating::where('project_id', $id)->update([
             'note' => $request->note,
             'comment' => $request->comment
 
@@ -54,7 +58,9 @@ class TeacherRatingController extends Controller
 
         ]);
     }
-    public function DeleteRating($id){
+
+    public function DeleteRating($id)
+    {
 
         $rating = rating::findOrFail($id);
         $rating->delete();

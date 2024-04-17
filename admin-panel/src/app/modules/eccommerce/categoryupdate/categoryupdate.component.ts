@@ -34,11 +34,8 @@ export class CategoryupdateComponent {
       console.log(this.id);
       if(this.id){
         this.eccommerceService.getCategoryDetail(this.id).subscribe(data=>{
-          this.name= data['data']["name"];
-          this.icon= data['data']["icon"];
-          this.images_file= data['data']["images"];
-          this.images_preview= URL_BACKEND+'storage/'+data['data']["images"];
-          console.log(this.categoryDetail)
+          this.name= data.categories.name;
+          console.log(data.categories.name)
         })
         
       }
@@ -66,21 +63,27 @@ export class CategoryupdateComponent {
   }
   save(){
     if(this.id){
-      if(this.images_file){
 
         let formData =  new FormData();
-        formData.append("images_file", this.images_file);
-        formData.append("name", this.name);
-        formData.append("icon", this.icon);
-        this.eccommerceService.update(this.id, formData).subscribe((resp:any)=>{
-          this.registrationSuccess=true;
-    
-          setTimeout(()=>{
-            this.registrationSuccess=false;
-          }, 5000);
-        })
         
-      }
+        // this.eccommerceService.update(this.id, formData).subscribe((resp:any)=>{
+        //   this.registrationSuccess=true;
+    
+        //   setTimeout(()=>{
+        //     this.registrationSuccess=false;
+        //   }, 5000);
+        //   console.log(resp);
+          
+        // })
+    formData.append("name", this.name);
+    this.eccommerceService.update(this.id , formData).subscribe((resp:any)=>{
+      this.registrationSuccess=true;
+
+      setTimeout(()=>{
+        this.registrationSuccess=false;
+      }, 5000);
+    })
+        
     
 
     }

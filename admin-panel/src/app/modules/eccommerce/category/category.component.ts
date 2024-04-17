@@ -42,6 +42,8 @@ export class CategoryComponent {
       this.EccommerceService.getCategory().subscribe((data:any)=>{
         this.categories = data['categories'];
         this.orginalcategories= data['categories'];
+        console.log(data);
+        
       });
 
     },error=>{

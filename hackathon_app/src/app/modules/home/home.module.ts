@@ -9,7 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    FormsModule 
   ]
 })
 export class HomeModule { }

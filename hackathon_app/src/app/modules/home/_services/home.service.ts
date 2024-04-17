@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { URL_SERVICE } from 'src/config/config';
+import { Observable, of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,40 @@ export class HomeService {
 
     return this.http.get<any>(URL,);
       
+  }
+
+  getAllProjects(): Observable<any> {
+    let URL = URL_SERVICE + '/projects';
+    const token = localStorage.getItem('token');
+
+    if(!token)
+    {
+      return of(null);
+    }
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,}
+    );
+
+    return this.http.get<any>(URL, {headers});
+
+  }
+
+  getAllCategories(): Observable<any> {
+    let URL = URL_SERVICE + '/categories';
+
+    const token = localStorage.getItem('token');
+    console.log(token)
+
+    if(!token)
+    {
+      return of(null);
+    }
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,}
+    );
+
+    return this.http.get<any>(URL, {headers});
+
   }
 
   

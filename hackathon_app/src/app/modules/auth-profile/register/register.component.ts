@@ -40,10 +40,8 @@ export class RegisterComponent {
       password:this.password,
       password_confirmation:this.password_confirmation,
       role:'student',
-
-
     };
-
+    
     this.authService.register(data).subscribe((resp:any)=>{
       console.log(resp);
       this.router.navigate(["auth/login"]);

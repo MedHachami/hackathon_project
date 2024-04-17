@@ -14,4 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< HEAD
 
+=======
+Route::get('/', function () {
+    return 'fh';
+});
+>>>>>>> e0cee1cb6c7f7e8f6286f6785094e04378756d5f

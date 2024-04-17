@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\categorie\CategorieController;
 
 use App\Http\Controllers\student\StudentProfileController;
+use App\Http\Controllers\ProjectController;
 
 
 
@@ -34,3 +35,4 @@ Route::controller(StudentProfileController::class)->group(function () {
     Route::put('UpdateProfil', 'UpdateProfil');
     Route::put('UpdatePassword', 'UpdatePassword');
 });
+Route::apiResource("projects", ProjectController::class);

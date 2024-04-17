@@ -31,12 +31,20 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
 });
 
-Route::controller(AdminAuthUsers::class)->group(function () {
 
-    Route::post('AdminAuth', 'register');
+
+
+Route::middleware(['check.role:admin'])->group(function () {
+    Route::controller(AdminAuthUsers::class)->group(function () {
+
+        Route::post('AdminAuth', 'register');
+    });
 });
-Route::controller(StudentProfileController::class)->group(function () {
 
-    Route::put('UpdateProfil', 'UpdateProfil');
-    Route::put('UpdatePassword', 'UpdatePassword');
+Route::middleware(['check.role:student'])->group(function () {
+    Route::controller(StudentProfileController::class)->group(function () {
+
+        Route::put('UpdateProfil', 'UpdateProfil');
+        Route::put('UpdatePassword', 'UpdatePassword');
+    });
 });

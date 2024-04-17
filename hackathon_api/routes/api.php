@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\admin\AdminAuthUsers;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\student\StudentProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\admin\AdminAuthUsers;
+use App\Http\Controllers\teacher\TeacherRatingController;
+use App\Http\Controllers\student\StudentProfileController;
+
+
 
 
 
@@ -30,15 +33,35 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("admin_login", "adminlogin");
 });
 
-Route::controller(AdminAuthUsers::class)->group(function () {
-    Route::resource('categorie', CategorieController::class);
 
-    Route::post('AdminAuth', 'register');
-});
-Route::controller(StudentProfileController::class)->group(function () {
 
-    Route::put('UpdateProfil', 'UpdateProfil');
-    Route::put('UpdatePassword', 'UpdatePassword');
+
+Route::middleware(['check.role:admin'])->group(function () {
+    Route::controller(AdminAuthUsers::class)->group(function () {
+        Route::resource('categorie', CategorieController::class);
+
+        Route::post('AdminAuth', 'register');
+    });
 });
-Route::apiResource("projects", ProjectController::class);
+Route::middleware(['check.role:teacher'])->group(function () {
+    Route::controller(TeacherRatingController::class)->group(function () {
+
+        Route::post('CreateRating', 'CreateRating');
+        Route::get('EditRating/{id}', 'EditRating');
+        Route::put('UpdateRating/{id}', 'UpdateRating');
+        Route::delete('DeleteRating/{id}', 'DeleteRating');
+        
+    });
+});
+
+Route::middleware(['check.role:student'])->group(function () {
+    Route::controller(StudentProfileController::class)->group(function () {
+
+        Route::put('UpdateProfil', 'UpdateProfil');
+        Route::put('UpdatePassword', 'UpdatePassword');
+    });
+
+    Route::apiResource("projects", ProjectController::class);
+});
 Route::post("filter", [ProjectController::class, "filter"]);
+

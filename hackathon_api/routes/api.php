@@ -26,7 +26,6 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::resource('categories', CategorieController::class);
 
-Route::resource('categorie', CategorieController::class);
 Route::middleware(['check.role:admin'])->group(function () {
     // Route::resource('categories', CategorieController::class);
 
@@ -36,14 +35,14 @@ Route::middleware(['check.role:admin'])->group(function () {
     });
 });
 //Route::middleware(['check.role:teacher'])->group(function () {
-    Route::controller(TeacherRatingController::class)->group(function () {
+Route::controller(TeacherRatingController::class)->group(function () {
 
-        Route::post('CreateRating', 'CreateRating');
-        Route::get('EditRating/{id}', 'EditRating');
-        Route::put('UpdateRating/{id}', 'UpdateRating');
-        Route::delete('DeleteRating/{id}', 'DeleteRating');
+    Route::post('CreateRating', 'CreateRating');
+    Route::get('EditRating/{id}', 'EditRating');
+    Route::put('UpdateRating/{id}', 'UpdateRating');
+    Route::delete('DeleteRating/{id}', 'DeleteRating');
 
-    });
+});
 //});
 
 Route::middleware(['check.role:student'])->group(function () {
@@ -53,7 +52,13 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdatePassword', 'UpdatePassword');
     });
 
-    Route::apiResource("projects", ProjectController::class);
+
+    // Route::apiResource("projects", ProjectController::class);
+    Route::post('/addProject', [ProjectController::class, 'store']);
+    Route::get('/projects', [ProjectController::class, 'index']);
+
+
+
 });
 Route::post("filter", [ProjectController::class, "filter"]);
 Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);

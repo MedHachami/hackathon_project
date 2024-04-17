@@ -57,13 +57,7 @@ class CategorieController extends Controller
     }
     public function index()
     {
-        $user = JWTAuth::user();
-        $user = auth()->user(); 
-        if (!$user) {
-            return response()->json("Unauthorized", 401);
-        }
-
-        if ($user->role === "admin") {
+        
             $categories = Category::all();
 
             $response = [
@@ -71,10 +65,6 @@ class CategorieController extends Controller
                 'message' => 'Categorie DATA successfully'
             ];
             return response()->json($response, 200);
-        } else {
-            return response()->json(" Unauthorized
-            ", 401);
-        }
     }
 
     public function destroy($id)

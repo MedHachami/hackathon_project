@@ -14,7 +14,7 @@ class StoreProjectRequest extends FormRequest
             "description" => "required",
             "link" => "required",
             "media" => "required",
-            "category_id" => "required"
+            // "category_id" => "required"
         ];
     }
 }

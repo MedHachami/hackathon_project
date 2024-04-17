@@ -38,6 +38,41 @@ class AuthController extends Controller
         ]);
     }
 
+    public function adminlogin(CreatLoginRequest $request)
+    {
+        $request->validated();
+        $credentials = $request->only('email', 'password');
+
+        $token = Auth::attempt($credentials);
+
+        if (!$token) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        $user = Auth::user();
+
+        if ($user->role !== 'admin') {
+            // If the authenticated user is not an admin, return unauthorized
+            Auth::logout(); // Logout the user
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized - Admin access only',
+            ], 401);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
     public function register(CreatRegisterRequest $request)
     {
         $request->validated();

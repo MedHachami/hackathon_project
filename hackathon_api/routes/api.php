@@ -29,6 +29,7 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::post('login', 'login');
     Route::post('register', 'register');
+    Route::post("admin_login", "adminlogin");
 });
 
 Route::controller(AdminAuthUsers::class)->group(function () {

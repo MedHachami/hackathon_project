@@ -41,6 +41,8 @@ export class AuthService {
     let URL = URL_SERVICE + '/login';
     return this.http.post(URL, {email,password}).pipe(
       map((resp:any)=>{
+        console.log(resp);
+        
         if(resp.authorisation){
            return this.saveLocalStorageResponse(resp);
           console.log(resp.authorisation);

@@ -36,11 +36,7 @@ Route::middleware(['check.role:admin'])->group(function () {
         Route::post('AdminAuth', 'register');
     });
 });
-<<<<<<< HEAD
-//Route::middleware(['check.role:teacher'])->group(function () {
-=======
 Route::middleware(['check.role:teacher'])->group(function () {
->>>>>>> 514817723e82262bb0bc12c5fabf9ec5f69ea633
 Route::controller(TeacherRatingController::class)->group(function () {
 
     Route::post('CreateRating', 'CreateRating');
@@ -49,11 +45,7 @@ Route::controller(TeacherRatingController::class)->group(function () {
     Route::delete('DeleteRating/{id}', 'DeleteRating');
 
 });
-<<<<<<< HEAD
-//});
-=======
 });
->>>>>>> 514817723e82262bb0bc12c5fabf9ec5f69ea633
 
 Route::middleware(['check.role:student'])->group(function () {
     Route::controller(StudentProfileController::class)->group(function () {
@@ -61,8 +53,7 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdateProfil', 'UpdateProfil');
         Route::put('UpdatePassword', 'UpdatePassword');
     });
-<<<<<<< HEAD
-
+ 
 
     // Route::apiResource("projects", ProjectController::class);
     Route::post('/addProject', [ProjectController::class, 'store']);
@@ -70,14 +61,12 @@ Route::middleware(['check.role:student'])->group(function () {
 
 
 
-=======
     Route::get("history", [HistoryController::class, "index"]);
     Route::get("ranking", [RankingController::class, "handle"]);
     
     Route::apiResource("projects", ProjectController::class);
     Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
     Route::post("filter", [ProjectController::class, "filter"]);
->>>>>>> 514817723e82262bb0bc12c5fabf9ec5f69ea633
 });
 
 

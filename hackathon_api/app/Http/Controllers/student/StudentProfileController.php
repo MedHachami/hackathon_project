@@ -12,11 +12,12 @@ use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class StudentProfileController extends Controller
 {
-    public function UpdateProfil(CreatUpdateProfile $request){
-       $userUpdate = $request->validated();
+    public function UpdateProfil(CreatUpdateProfile $request)
+    {
+        $userUpdate = $request->validated();
         $user = JWTAuth::user();
 
-        User::where('id' , $user->id)->update([
+        User::where('id', $user->id)->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
@@ -24,19 +25,30 @@ class StudentProfileController extends Controller
             'status' => 'success',
             'message' => 'User Updated successfully',
             'userUpdate' => $userUpdate,
-           
+
         ]);
     }
-    public function UpdatePassword(CreatResetPassword $request){
+    public function IndexUser()
+    {
+        $user = JWTAuth::user();
+        $userData = User::where('id', $user->id)->first();
+
+        return response()->json([
+            'statut' => 'success',
+            'userData' => $userData,
+        ], 200);
+    }
+    public function UpdatePassword(CreatResetPassword $request)
+    {
         try {
             $passwordUpdate = $request->validated();
-    
+
             $user = JWTAuth::user();
-    
-            User::where('id' , $user->id)->update([
+
+            User::where('id', $user->id)->update([
                 'password' => Hash::make($passwordUpdate['password']),
             ]);
-    
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Password updated successfully',
@@ -47,9 +59,8 @@ class StudentProfileController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to update password',
-                'error' => $e->getMessage(), 
-            ], 500); 
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
-    
 }

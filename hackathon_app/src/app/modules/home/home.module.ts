@@ -8,14 +8,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { ProjectsComponent } from './projects/projects.component'; 
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,

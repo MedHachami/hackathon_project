@@ -7,16 +7,10 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class StoreProjectRequest extends FormRequest
 {
-    public function authorize()
-    {
-        return true;
-//        return $this->user()->can("create", Project::class);
-    }
-
     public function rules()
     {
         return [
-            "name" => "required",
+            "name" => "required|unique:projects",
             "description" => "required",
             "link" => "required",
             "media" => "required"

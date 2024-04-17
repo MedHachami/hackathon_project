@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminAuthUsers;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RankingController;
 use App\Http\Controllers\student\StudentProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,3 +43,6 @@ Route::controller(StudentProfileController::class)->group(function () {
 });
 Route::apiResource("projects", ProjectController::class);
 Route::post("filter", [ProjectController::class, "filter"]);
+Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
+
+Route::get("ranking", [RankingController::class, "handle"]);

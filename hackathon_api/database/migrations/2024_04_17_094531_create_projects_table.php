@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string("name");
             $table->string("description");
             $table->string("link");
+            $table->boolean("is_rated")->default(false);
             $table->foreignId("category_id")
                 ->constrained("categories");
-            $table->foreignId("user_id")
+            $table->foreignId("student_id")
                 ->constrained("users");
             $table->softDeletes();
             $table->timestamps();

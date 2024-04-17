@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         "name",
         "description",
         "link",
-        "user_id",
+        "student_id",
         "category_id"
     ];
     public function ScopeFilter($query, array $filters)
@@ -27,6 +28,11 @@ class Project extends Model
             )
         );
     }
+
+    public function student()
+    {
+        return $this->belongsTo(User::class, "student_id");
+    }
     public function media()
     {
         return $this->morphMany(Media::class, "mediaable");
@@ -35,5 +41,10 @@ class Project extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, "category_id");
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(Rating::class);
     }
 }

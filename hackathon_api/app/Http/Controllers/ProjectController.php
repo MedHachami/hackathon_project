@@ -49,7 +49,7 @@ class ProjectController extends BaseApiController
                 "name" => $validatedData["name"],
                 "description" => $validatedData["description"],
                 "link" => $validatedData["link"],
-                "user_id" => auth()->id(),
+                "student_id" => auth()->id(),
                 "category_id" => 1
             ]);
 
@@ -68,7 +68,6 @@ class ProjectController extends BaseApiController
     public function update(UpdateProjectRequest $request, Project $project)
     {
         try {
-
             $validatedData = $request->validated();
             $project->update([
                 "name" => $validatedData["name"],
@@ -100,11 +99,10 @@ class ProjectController extends BaseApiController
     public function restore($id)
     {
         try {
-            $project = Project::withTrashed()->where("id", $id)->restore();
-            $this->authorize("delete", $project);
+            Project::withTrashed()->where("id", $id)->restore();
             return $this->sendResponse(message: "project restored successfully");
         } catch (\Exception $e) {
-            return $this->sendError("could not restore project");
+            return $this->sendError($e->getMessage());
         }
     }
 

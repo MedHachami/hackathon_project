@@ -53,7 +53,7 @@ Route::middleware(['check.role:student'])->group(function () {
     });
     Route::get("history", [HistoryController::class, "index"]);
     Route::get("ranking", [RankingController::class, "handle"]);
-    
+
     Route::apiResource("projects", ProjectController::class);
     Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
     Route::post("filter", [ProjectController::class, "filter"]);

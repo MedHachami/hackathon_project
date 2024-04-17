@@ -38,9 +38,7 @@ export class NewcategoryComponent {
   }
   save(){
     let formData =  new FormData();
-    formData.append("images_file", this.images_file);
     formData.append("name", this.name);
-    formData.append("icon", this.icon);
     this.eccommerceService.create(formData).subscribe((resp:any)=>{
       this.registrationSuccess=true;
 

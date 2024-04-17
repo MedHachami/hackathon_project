@@ -26,9 +26,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("admin_login", "adminlogin");
 });
 
+Route::resource('categories', CategorieController::class);
 
-Route::resource('categorie', CategorieController::class);
 Route::middleware(['check.role:admin'])->group(function () {
+    // Route::resource('categories', CategorieController::class);
+
     Route::controller(AdminAuthUsers::class)->group(function () {
         Route::get("dashboard/statistics", [DashboardController::class, "statistics"]);
         Route::post('AdminAuth', 'register');
@@ -51,6 +53,14 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdateProfil', 'UpdateProfil');
         Route::put('UpdatePassword', 'UpdatePassword');
     });
+ 
+
+    // Route::apiResource("projects", ProjectController::class);
+    Route::post('/addProject', [ProjectController::class, 'store']);
+    Route::get('/projects', [ProjectController::class, 'index']);
+
+
+
     Route::get("history", [HistoryController::class, "index"]);
     Route::get("ranking", [RankingController::class, "handle"]);
 

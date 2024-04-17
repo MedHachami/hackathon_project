@@ -11,16 +11,26 @@ export class EccomerceService {
   constructor(private http: HttpClient) { }
 
   getCategory():Observable<any>{
-    let URL = URL_SERVICE + '/category/all';
+    let URL = URL_SERVICE + '/categories';
 
-   
+    const token = localStorage.getItem('token');
+    console.log(token)
 
-    return this.http.get<any>(URL,);
+    if(!token)
+    {
+      return of(null);
+    }
+    const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`,}
+    );
+
+    return this.http.get<any>(URL, {headers});
+
       
   }
 
   deletecategory(userId:number):Observable<any>{
-    let URL = URL_SERVICE + '/category/' +userId;
+    let URL = URL_SERVICE + '/categories/' +userId;
 
     const token = localStorage.getItem('token');
 
@@ -37,7 +47,7 @@ export class EccomerceService {
   }
 
   create(data:any):Observable<any>{
-    let URL = URL_SERVICE + '/category/add';
+    let URL = URL_SERVICE + '/categories';
 
     const token = localStorage.getItem('token');
 
@@ -53,7 +63,7 @@ export class EccomerceService {
       
   }
   getCategoryDetail(id:number):Observable<any>{
-    let URL = URL_SERVICE + '/category/detail/' +id;
+    let URL = URL_SERVICE + '/categories/' +id;
 
     const token = localStorage.getItem('token');
 
@@ -71,7 +81,7 @@ export class EccomerceService {
 
   
   update(id:number, data:any):Observable<any>{
-    let URL = URL_SERVICE + '/category/update/' +id;
+    let URL = URL_SERVICE + '/categories/' +id;
 
     const token = localStorage.getItem('token');
 
@@ -83,7 +93,7 @@ export class EccomerceService {
         'Authorization': `Bearer ${token}`,}
     );
 
-    return this.http.post<any>(URL, data,  {headers});
+    return this.http.put<any>(URL, data,  {headers});
       
   }
 }

@@ -6,15 +6,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable , HasRoles;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable. 
      *
      * @var array<int, string>
      */
@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -42,10 +43,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-    ];
+    ]; 
 
-    public function events()
+    public function getJWTIdentifier()
     {
-        return $this->hasMany(EventModel::class, 'organizator_id');
+      return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+      return [];
     }
 }

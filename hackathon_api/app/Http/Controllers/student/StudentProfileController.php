@@ -32,11 +32,10 @@ class StudentProfileController extends Controller
     public function IndexUser()
     {
         $user = JWTAuth::user();
-        $userData = User::where('id', $user->id)->first();
 
         return response()->json([
             'statut' => 'success',
-            'userData' => $userData,
+            'userData' => $user,
         ], 200);
     }
     public function UpdatePassword(CreatResetPassword $request)

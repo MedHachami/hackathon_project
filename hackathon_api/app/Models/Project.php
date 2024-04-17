@@ -15,7 +15,8 @@ class Project extends Model
         "description",
         "link",
         "student_id",
-        "category_id"
+        "category_id",
+        "is_rated"
     ];
     public function ScopeFilter($query, array $filters)
     {

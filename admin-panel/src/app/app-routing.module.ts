@@ -6,6 +6,12 @@ import { AuthGuard } from './modules/auth/_services/auth.guard';
 
 const routes: Routes = [
   {
+    path: '', 
+    // canActivate: [AuthGuard],
+    loadChildren:() =>
+    import('./modules/dashboard/dashboard.module').then((m)=> m.DashboardModule) 
+  },
+  {
     path: 'product', loadChildren:() =>
     import('./modules/product/product.module').then((m)=> m.ProductModule) 
   },
@@ -36,24 +42,20 @@ const routes: Routes = [
   },
   {
     path: 'cupon', 
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/cupones/cupones.module').then((m)=> m.CuponesModule) 
   },
 
   {
     path: 'discount', 
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren:() =>
     import('./modules/discount/discount.module').then((m)=> m.DiscountModule) 
   },
 
 
-  {
-    path: '', 
-    loadChildren:() =>
-    import('./modules/dashboard/dashboard.module').then((m)=> m.DashboardModule) 
-  }
+
 
 
 ];

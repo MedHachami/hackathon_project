@@ -12,12 +12,12 @@ export class SharedService {
 
 
   getCategory():Observable<any>{
-    let URL = URL_SERVICE + '/category/all';
+    let URL = URL_SERVICE + '/categories';
 
-   
+
 
     return this.http.get<any>(URL,);
-      
+
   }
 
 }

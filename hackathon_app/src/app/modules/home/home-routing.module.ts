@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 const routes: Routes = [
-  { 
+  {
     path: '',
     component: HomeComponent,
     children:[
@@ -17,7 +18,11 @@ const routes: Routes = [
         path:'product/:id',
         component:ProductDetailComponent
       },
-     
+      {
+        path: "profile",
+        component:ProfileComponent
+      }
+
     ]
 
   }

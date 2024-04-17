@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 import _ from 'lodash';
 window._ = _;
 
+=======
+>>>>>>> 256dfbbb33e98b9efd426406daf30f60263e343c
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

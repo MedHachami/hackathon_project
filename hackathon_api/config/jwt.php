@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Secret
@@ -35,6 +36,7 @@ return [
     */
 
     'keys' => [
+
         /*
         |--------------------------------------------------------------------------
         | Public Key
@@ -71,6 +73,7 @@ return [
         */
 
         'passphrase' => env('JWT_PASSPHRASE'),
+
     ],
 
     /*
@@ -117,12 +120,14 @@ return [
     |
     | Specify the hashing algorithm that will be used to sign the token.
     |
+<<<<<<< HEAD
     | See here: https://github.com/namshi/jose/tree/master/src/Namshi/JOSE/Signer/OpenSSL
     | for possible values.
     |
     */
 
     'algo' => env('JWT_ALGO', 'HS256'),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -227,6 +232,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+<<<<<<< HEAD
     | Show blacklisted token option
     |--------------------------------------------------------------------------
     |
@@ -238,6 +244,8 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+=======
+>>>>>>> 256dfbbb33e98b9efd426406daf30f60263e343c
     | Cookies encryption
     |--------------------------------------------------------------------------
     |
@@ -264,6 +272,7 @@ return [
     */
 
     'providers' => [
+
         /*
         |--------------------------------------------------------------------------
         | JWT Provider
@@ -274,6 +283,7 @@ return [
         */
 
         'jwt' => PHPOpenSourceSaver\JWTAuth\Providers\JWT\Lcobucci::class,
+
 
         /*
         |--------------------------------------------------------------------------
@@ -286,6 +296,7 @@ return [
 
         'auth' => PHPOpenSourceSaver\JWTAuth\Providers\Auth\Illuminate::class,
 
+
         /*
         |--------------------------------------------------------------------------
         | Storage Provider
@@ -297,4 +308,5 @@ return [
 
         'storage' => PHPOpenSourceSaver\JWTAuth\Providers\Storage\Illuminate::class,
     ],
+
 ];

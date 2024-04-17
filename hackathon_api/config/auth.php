@@ -15,6 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'api',
+
         'passwords' => 'users',
     ],
 
@@ -45,6 +46,7 @@ return [
                 'driver' => 'jwt',
                 'provider' => 'users',
         ],
+
 
     ],
 
@@ -90,12 +92,14 @@ return [
     | considered valid. This security feature keeps tokens short-lived so
     | they have less time to be guessed. You may change this as needed.
     |
+
     */
 
     'passwords' => [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
+
             'expire' => 60,
             'throttle' => 60,
         ],

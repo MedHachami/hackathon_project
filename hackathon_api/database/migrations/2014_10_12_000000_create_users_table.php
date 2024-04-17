@@ -8,10 +8,12 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+
      *
      * @return void
      */
     public function up()
+
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -31,6 +33,7 @@ return new class extends Migration
      * @return void
      */
     public function down()
+
     {
         Schema::dropIfExists('users');
     }

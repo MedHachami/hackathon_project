@@ -13,7 +13,7 @@
 
                 <li class="flex items-center ml-4">
                     <a href="#">         <i class="fa-solid fa-users"></i>
-                       <span class="ml-1 mr-4">Eccomerce</span> 
+                       <span class="ml-1 mr-4">Manage</span> 
                     </a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </li>
@@ -61,16 +61,9 @@
                     <input type="text" [(ngModel)]="name" name="name" class="w-full p-2 rounded-lg  text-black">
                 </div>
 
-                <div class="lg:col-span-4 col-span-4 flex flex-col">
-                    <label class="text-lg">icon</label>
-                    <input type="text" [(ngModel)]="icon" name="icon"  class="w-full p-2 rounded-lg text-black">
-                </div>
+                
 
-                <div class="lg:col-span-4 col-span-4 flex flex-col">
-                    <label class="text-lg">images</label>
-                    <input type="file" class="w-full p-2 rounded-lg" accept=".jpeg, .bmp, .jpg, .png, .gif"
-                    (change)="processFile($event)" >
-                </div>
+                
 
                 <div class="lg:col-span-4 col-span-4 flex flex-col">
                   <img [src]="images_preview" class="w-40">

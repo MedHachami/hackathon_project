@@ -4,6 +4,8 @@ namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 
+
+
 trait CreatesApplication
 {
     /**
@@ -12,6 +14,7 @@ trait CreatesApplication
      * @return \Illuminate\Foundation\Application
      */
     public function createApplication()
+
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 

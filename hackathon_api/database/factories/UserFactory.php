@@ -16,6 +16,7 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition()
+
     {
         return [
             'name' => fake()->name(),
@@ -32,6 +33,7 @@ class UserFactory extends Factory
      * @return static
      */
     public function unverified()
+
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,

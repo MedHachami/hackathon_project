@@ -26,6 +26,7 @@ class EventServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
+
     {
         //
     }
@@ -36,6 +37,7 @@ class EventServiceProvider extends ServiceProvider
      * @return bool
      */
     public function shouldDiscoverEvents()
+
     {
         return false;
     }

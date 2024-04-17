@@ -84,7 +84,7 @@ class ApiController extends Controller
 
             $userdata = auth()->user();
 
-            // if($userdata->is_admin == "1"){
+            if($userdata->is_admin == "1"){
                 return response()->json([
                     "status" => true,
                     "message" => "User logged in succcessfully",
@@ -92,7 +92,7 @@ class ApiController extends Controller
                     "user"=>  $userdata
                 ]);
 
-            // }
+            }
            
         }
 

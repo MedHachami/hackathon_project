@@ -50,7 +50,7 @@ class ProjectController extends BaseApiController
                 "description" => $validatedData["description"],
                 "link" => $validatedData["link"],
                 "student_id" => auth()->id(),
-                "category_id" => 1
+                "category_id" => $validatedData["category_id"],
             ]);
 
             $this->service->store($validatedData["media"], $project);

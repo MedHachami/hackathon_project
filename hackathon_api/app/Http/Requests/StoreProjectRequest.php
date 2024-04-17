@@ -13,7 +13,8 @@ class StoreProjectRequest extends FormRequest
             "name" => "required|unique:projects",
             "description" => "required",
             "link" => "required",
-            "media" => "required"
+            "media" => "required",
+            "category_id" => "required"
         ];
     }
 }

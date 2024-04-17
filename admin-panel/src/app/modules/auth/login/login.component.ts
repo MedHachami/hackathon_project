@@ -21,7 +21,7 @@ export class LoginComponent {
 
   ngOnInit(): void{
     if(this.authService.user && this.authService.token){
-      this.router.navigate(["/"])
+      this.router.navigate(["/dashboard"])
     }
   }
 

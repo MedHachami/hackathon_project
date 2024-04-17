@@ -14,12 +14,15 @@ class Category extends Model
 
     public function ScopeCategoryRanking($query, $id)
     {
-        return $query->find($id)
-            ->whereHas("projects", function ($query) {
-                $query->where("is_rated", true);
-            })
-            ->with("projects", "projects.rating")
-            ->get()
+        return $query
+            ->with(['projects' => function ($query) {
+                $query->where('is_rated', true)
+                    ->with('rating');
+            }])
+            ->find($id)
+            ->projects
+            ->sortByDesc('rating.note')
+            ->values()
             ->toJson();
     }
     public function projects()

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\teacher;
 
-use App\Models\rating;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatRatingRequest;
 use App\Http\Requests\CreatUpdateRatingRequest;
+use App\Models\Project;
+use App\Models\Rating;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class TeacherRatingController extends Controller
@@ -13,21 +14,26 @@ class TeacherRatingController extends Controller
 
     public function CreateRating(CreatRatingRequest $request)
     {
-        $Rating = $request->validated();
+        $validatedData = $request->validated();
         $teacher = JWTAuth::user();
 
-        Rating::create([
-            'note' => $request->note,
-            'comment' => $request->comment,
+        $rating = Rating::create([
+            'note' => $validatedData["note"],
+            'comment' => $validatedData["comment"],
             'teacher_id' => $teacher->id,
-            'project_id' => $request->project_id
+            'project_id' => $validatedData["project_id"]
         ]);
+
+        Project::find($validatedData["project_id"])
+            ->update(["is_rated" => true]);
+
         return response()->json([
             'status' => 'success',
             'message' => 'Rate Created successfully',
-            'Rating' => $Rating,
+            'Rating' => $rating,
         ]);
     }
+
     public function EditRating($id)
     {
         $rating = Rating::where('project_id', $id)->first();
@@ -52,7 +58,9 @@ class TeacherRatingController extends Controller
 
         ]);
     }
-    public function DeleteRating($id){
+
+    public function DeleteRating($id)
+    {
 
         $rating = rating::findOrFail($id);
         $rating->delete();

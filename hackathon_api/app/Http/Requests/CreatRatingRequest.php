@@ -26,7 +26,6 @@ class CreatRatingRequest extends FormRequest
         return [
             'note' => 'required',
             'comment' => 'required',
-            'teacher_id' => 'required',
             'project_id' => 'required',
         ];
     }

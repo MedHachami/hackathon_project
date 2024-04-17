@@ -21,7 +21,7 @@ class ProjectController extends BaseApiController
         try {
             return $this->sendResponse(
                 message: "projects list",
-                result: ProjectResource::collection(Project::all()),
+                result: ProjectResource::collection(Project::with("media", "category")->get()),
             );
         } catch (\Exception $e) {
             return $this->sendError(error: $e->getMessage());
@@ -106,5 +106,14 @@ class ProjectController extends BaseApiController
         } catch (\Exception $e) {
             return $this->sendError("could not restore project");
         }
+    }
+
+    public function filter()
+    {
+        $projects = Project::filter(request(["search", "category"]))->with("media", "category")->get();
+        return $this->sendResponse(
+            message: "filter result",
+            result:  ProjectResource::collection($projects),
+        );
     }
 }

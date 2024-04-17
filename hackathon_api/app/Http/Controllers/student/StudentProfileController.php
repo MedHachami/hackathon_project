@@ -17,9 +17,10 @@ class StudentProfileController extends Controller
         $userUpdate = $request->validated();
         $user = JWTAuth::user();
 
-        User::where('id', $user->id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
+
+        User::where('id' , $user->id)->update([
+            'name' => $userUpdate["name"],
+            'email' => $userUpdate["email"],
         ]);
         return response()->json([
             'status' => 'success',
@@ -46,6 +47,7 @@ class StudentProfileController extends Controller
             $user = JWTAuth::user();
 
             User::where('id', $user->id)->update([
+
                 'password' => Hash::make($passwordUpdate['password']),
             ]);
 
@@ -54,7 +56,7 @@ class StudentProfileController extends Controller
                 'message' => 'Password updated successfully',
                 'passwordUpdate' => $passwordUpdate,
             ]);
-            
+
         } catch (Throwable $e) {
             return response()->json([
                 'status' => 'error',
@@ -63,4 +65,5 @@ class StudentProfileController extends Controller
             ], 500);
         }
     }
+
 }

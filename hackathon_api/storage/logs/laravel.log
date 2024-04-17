@@ -4370,3 +4370,51 @@ Stack trace:
 #57 C:\\Users\\walid\\OneDrive\\Desktop\\Hackathon\\hackathon_project\\hackathon_api\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\Users\\\\walid\\\\...')
 #58 {main}
 "} 
+[2024-04-17 15:47:13] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php:220)
+[stacktrace]
+#0 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(71): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Command/Command.php(250): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Console/Command.php(152): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(1014): Illuminate\\Console\\Command->run()
+#7 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()
+#10 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()
+#11 /home/geek/hackathon_project/hackathon_api/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2024-04-17 15:47:15] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php:220)
+[stacktrace]
+#0 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(71): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Command/Command.php(250): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Console/Command.php(152): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(1014): Illuminate\\Console\\Command->run()
+#7 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()
+#10 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()
+#11 /home/geek/hackathon_project/hackathon_api/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 
+[2024-04-17 15:47:18] local.ERROR: The "--columns" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--columns\" option does not exist. at /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php:220)
+[stacktrace]
+#0 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(147): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/ArgvInput.php(71): Symfony\\Component\\Console\\Input\\ArgvInput->parseToken()
+#3 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#4 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Command/Command.php(250): Symfony\\Component\\Console\\Input\\Input->bind()
+#5 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Console/Command.php(152): Symfony\\Component\\Console\\Command\\Command->run()
+#6 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(1014): Illuminate\\Console\\Command->run()
+#7 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(301): Symfony\\Component\\Console\\Application->doRunCommand()
+#8 /home/geek/hackathon_project/hackathon_api/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#9 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Console/Application.php(102): Symfony\\Component\\Console\\Application->run()
+#10 /home/geek/hackathon_project/hackathon_api/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()
+#11 /home/geek/hackathon_project/hackathon_api/artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle()
+#12 {main}
+"} 

@@ -23,7 +23,8 @@ class CategorieController extends Controller
 
             return response()->json($response, 201);
         } else {
-            abort(401);
+            return response()->json(" Unauthorized
+      ",401);
         }
     }
     public function update(CategorieRequest $categorieRequest, Categorie $categorie)
@@ -39,13 +40,13 @@ class CategorieController extends Controller
             ];
             return response()->json($response, 200);
         } else {
-            abort(401);
-        }
+            return response()->json(" Unauthorized
+            ",401);        }
 
     }
     public function index()
     {
-        if (Auth::User()->role == "amdin") {
+        if (Auth::User()->role == "admin") {
             $categories = Categorie::all();
 
             $response = [
@@ -54,13 +55,13 @@ class CategorieController extends Controller
             ];
             return response()->json($response, 200);
         }   else{
-            abort(401);
-        }
+            return response()->json(" Unauthorized
+            ",401);        }
     }
 
     public function destroy(Categorie $categorie)
     {
-        if (Auth::User()->role == "amdin") {
+        if (Auth::User()->role == "admin") {
             $categorie = Categorie::findOrFail($categorie->id);
             $categorie->delete();
             $response = [
@@ -70,8 +71,8 @@ class CategorieController extends Controller
             return response()->json($response, 200);
 
         }   else{
-            abort(401);
-        }
+            return response()->json(" Unauthorized
+            ",401);        }
 
 
     }

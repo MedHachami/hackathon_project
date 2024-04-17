@@ -11,6 +11,17 @@ class Category extends Model
     protected $fillable = [
         "name"
     ];
+
+    public function ScopeCategoryRanking($query, $id)
+    {
+        return $query->find($id)
+            ->whereHas("projects", function ($query) {
+                $query->where("is_rated", true);
+            })
+            ->with("projects", "projects.rating")
+            ->get()
+            ->toJson();
+    }
     public function projects()
     {
         return $this->hasMany(Project::class);

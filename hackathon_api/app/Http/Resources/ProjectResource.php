@@ -19,7 +19,9 @@ class ProjectResource extends JsonResource
             "name" => $this->name,
             "description" => $this->description,
             "link" => $this->link,
-            "media" => MediaResource::collection($this->media)
+            "isRated" => $this->is_rated,
+            "media" => MediaResource::collection($this->media),
+            "category" => new CategoryResource($this->category),
         ];
     }
 }

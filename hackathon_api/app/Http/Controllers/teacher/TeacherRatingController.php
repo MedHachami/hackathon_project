@@ -16,7 +16,7 @@ class TeacherRatingController extends Controller
         $Rating = $request->validated();
         $teacher = JWTAuth::user();
 
-        rating::create([
+        Rating::create([
             'note' => $request->note,
             'comment' => $request->comment,
             'teacher_id' => $teacher->id,
@@ -30,7 +30,7 @@ class TeacherRatingController extends Controller
     }
     public function EditRating($id)
     {
-        $rating = rating::where('project_id', $id)->first();
+        $rating = Rating::where('project_id', $id)->first();
         return response()->json([
             'statut' => 'success',
             'rating' => $rating,
@@ -40,9 +40,7 @@ class TeacherRatingController extends Controller
     public function UpdateRating($id, CreatUpdateRatingRequest $request)
     {
         $Rating = $request->validated();
-
-
-        rating::where('project_id', $id)->update([
+        Rating::where('project_id', $id)->update([
             'note' => $request->note,
             'comment' => $request->comment
 

@@ -30,20 +30,20 @@ Route::controller(AuthController::class)->group(function () {
 Route::resource('categorie', CategorieController::class);
 Route::middleware(['check.role:admin'])->group(function () {
     Route::controller(AdminAuthUsers::class)->group(function () {
-
+        Route::get("dashboard/statistics", [DashboardController::class, "statistics"]);
         Route::post('AdminAuth', 'register');
     });
 });
-//Route::middleware(['check.role:teacher'])->group(function () {
-    Route::controller(TeacherRatingController::class)->group(function () {
+Route::middleware(['check.role:teacher'])->group(function () {
+Route::controller(TeacherRatingController::class)->group(function () {
 
-        Route::post('CreateRating', 'CreateRating');
-        Route::get('EditRating/{id}', 'EditRating');
-        Route::put('UpdateRating/{id}', 'UpdateRating');
-        Route::delete('DeleteRating/{id}', 'DeleteRating');
+    Route::post('CreateRating', 'CreateRating');
+    Route::get('EditRating/{id}', 'EditRating');
+    Route::put('UpdateRating/{id}', 'UpdateRating');
+    Route::delete('DeleteRating/{id}', 'DeleteRating');
 
-    });
-//});
+});
+});
 
 Route::middleware(['check.role:student'])->group(function () {
     Route::controller(StudentProfileController::class)->group(function () {
@@ -51,13 +51,12 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdateProfil', 'UpdateProfil');
         Route::put('UpdatePassword', 'UpdatePassword');
     });
-        Route::get("history", [HistoryController::class, "index"]);
-
+    Route::get("history", [HistoryController::class, "index"]);
+    Route::get("ranking", [RankingController::class, "handle"]);
+    
     Route::apiResource("projects", ProjectController::class);
+    Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
+    Route::post("filter", [ProjectController::class, "filter"]);
 });
-Route::post("filter", [ProjectController::class, "filter"]);
-Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
 
-Route::get("ranking", [RankingController::class, "handle"]);
 
-Route::get("dashboard/statistics", [DashboardController::class, "statistics"]);

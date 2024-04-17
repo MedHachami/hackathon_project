@@ -114,4 +114,16 @@ class ProjectController extends BaseApiController
             result:  ProjectResource::collection($projects),
         );
     }
+
+    public function filterUserProjects()
+    {
+        $filters = request(["search", "category"]);
+        $filters['user_id'] = auth()->id();
+
+        $projects = Project::filterUserProjects($filters)->with("media", "category")->get();
+        return $this->sendResponse(
+            message: "filter result",
+            result:  ProjectResource::collection($projects),
+        );
+    }
 }

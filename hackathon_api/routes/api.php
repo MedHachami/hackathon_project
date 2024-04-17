@@ -53,7 +53,7 @@ Route::middleware(['check.role:student'])->group(function () {
         Route::put('UpdateProfil', 'UpdateProfil');
         Route::put('UpdatePassword', 'UpdatePassword');
     });
- 
+
 
     // Route::apiResource("projects", ProjectController::class);
     Route::post('/addProject', [ProjectController::class, 'store']);
@@ -67,6 +67,7 @@ Route::middleware(['check.role:student'])->group(function () {
     Route::apiResource("projects", ProjectController::class);
     Route::post("projects/{id}/restore", [ProjectController::class, "restore"]);
     Route::post("filter", [ProjectController::class, "filter"]);
+    Route::get("filterUserProjects", [ProjectController::class, "filterUserProjects"]);
 });
 
 

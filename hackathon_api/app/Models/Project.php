@@ -29,7 +29,21 @@ class Project extends Model
             )
         );
     }
+    public function ScopeFilterUserProjects($query, array $filters)
+    {
+        $query->where("user_id", $filters['user_id']);
 
+        $query->when($filters["search"] ?? false, fn($query, $search) => $query
+            ->where("name", "like", "%" . $search . "%")
+            ->orWhere("description", "like", "%" . $search . "%"));
+
+        $query->when($filters["category"] ?? false, fn($query, $category) => $query
+            ->whereHas('category', fn($query) => $query->where("name", $category)
+            )
+        );
+
+        return $query;
+    }
     public function student()
     {
         return $this->belongsTo(User::class, "student_id");

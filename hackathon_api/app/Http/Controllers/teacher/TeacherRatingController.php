@@ -6,6 +6,7 @@ use App\Models\rating;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatRatingRequest;
 use App\Http\Requests\CreatUpdateRatingRequest;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class TeacherRatingController extends Controller
 {
@@ -13,21 +14,20 @@ class TeacherRatingController extends Controller
     public function CreateRating(CreatRatingRequest $request)
     {
         $Rating = $request->validated();
+        $teacher = JWTAuth::user();
 
         rating::create([
             'note' => $request->note,
             'comment' => $request->comment,
+            'teacher_id' => $teacher->id,
             'project_id' => $request->project_id
-
         ]);
         return response()->json([
             'status' => 'success',
             'message' => 'Rate Created successfully',
             'Rating' => $Rating,
-
         ]);
     }
-
     public function EditRating($id)
     {
         $rating = rating::where('project_id', $id)->first();

@@ -25,6 +25,7 @@ class CreatUpdateRatingRequest extends FormRequest
     {
         return [
             'note' => 'required',
-            'comment' => 'required',        ];
+            'comment' => 'required', 
+               ];
     }
 }

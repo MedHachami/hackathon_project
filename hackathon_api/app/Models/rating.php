@@ -11,7 +11,7 @@ class rating extends Model
     protected $fillable = [
         'note',
         'comment',
-       'project_id'
+        'teacher_id',
+        'project_id'
     ];
-
 }

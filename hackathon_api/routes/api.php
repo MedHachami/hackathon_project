@@ -36,9 +36,9 @@ Route::controller(AuthController::class)->group(function () {
 
 
 
+Route::resource('categorie', CategorieController::class);
 Route::middleware(['check.role:admin'])->group(function () {
     Route::controller(AdminAuthUsers::class)->group(function () {
-        Route::resource('categorie', CategorieController::class);
 
         Route::post('AdminAuth', 'register');
     });

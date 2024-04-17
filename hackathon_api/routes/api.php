@@ -33,12 +33,14 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("admin_login", "adminlogin");
 });
 
+Route::resource('categories', CategorieController::class);
 
 
 
 Route::middleware(['check.role:admin'])->group(function () {
+    // Route::resource('categories', CategorieController::class);
+
     Route::controller(AdminAuthUsers::class)->group(function () {
-        Route::resource('categorie', CategorieController::class);
 
         Route::post('AdminAuth', 'register');
     });

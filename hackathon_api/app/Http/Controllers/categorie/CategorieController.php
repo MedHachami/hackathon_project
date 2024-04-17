@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\categorie;
 
-use App\Models\Categorie;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CategorieRequest;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+
 
 class CategorieController extends Controller
 {
@@ -14,7 +16,7 @@ class CategorieController extends Controller
     {
         if (Auth::User()->role == "admin") {
             $categorieData = $categorieRequest->validated();
-            $categories = Categorie::create($categorieData);
+            $categories = Category::create($categorieData);
 
             $response = [
                 'categories' => $categories,
@@ -24,45 +26,61 @@ class CategorieController extends Controller
             return response()->json($response, 201);
         } else {
             return response()->json(" Unauthorized
-      ",401);
+      ", 401);
         }
     }
-    public function update(CategorieRequest $categorieRequest, Categorie $categorie)
+    public function update(Category $category , Request $request)
     {
-        if (Auth::User()->role == "admin") {
-            $categorieData = $categorieRequest->validated();
-            $categorie = Categorie::findOrFail($categorie->id);
-            $categorie->update($categorieData);
-
-            $response = [
-                'categorie' => $categorie,
-                'message' => 'Categorie updated successfully'
-            ];
-            return response()->json($response, 200);
-        } else {
-            return response()->json(" Unauthorized
-            ",401);        }
+        $user = JWTAuth::user();
+        $user = auth()->user(); 
+        if (!$user) {
+            return response()->json("Unauthorized", 401);
+        }else{
+            if ($user->role == "admin") {
+                $categorieData = $request->validate([
+                    'name'=>'required|string',
+                ]);
+                $categorie = Category::findOrFail($category->id);
+                $categorie->update($categorieData);
+    
+                $response = [
+                    'categorie' => $categorie,
+                    'message' => 'Categorie updated successfully'
+                ];
+                return response()->json($response, 200);
+            } else {
+                return response()->json(" Unauthorized
+                ",401);        }
+        }
+        
 
     }
     public function index()
     {
-        if (Auth::User()->role == "admin") {
-            $categories = Categorie::all();
+        $user = JWTAuth::user();
+        $user = auth()->user(); 
+        if (!$user) {
+            return response()->json("Unauthorized", 401);
+        }
+
+        if ($user->role === "admin") {
+            $categories = Category::all();
 
             $response = [
                 'categories' => $categories,
                 'message' => 'Categorie DATA successfully'
             ];
             return response()->json($response, 200);
-        }   else{
+        } else {
             return response()->json(" Unauthorized
-            ",401);        }
+            ", 401);
+        }
     }
 
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
         if (Auth::User()->role == "admin") {
-            $categorie = Categorie::findOrFail($categorie->id);
+            $categorie = Category::findOrFail($id);
             $categorie->delete();
             $response = [
 
@@ -70,24 +88,25 @@ class CategorieController extends Controller
             ];
             return response()->json($response, 200);
 
-        }   else{
+        } else {
             return response()->json(" Unauthorized
-            ",401);        }
+            ", 401);
+        }
 
 
     }
-    public function show(Categorie $categorie)
+    public function show($id)
     {
         if (Auth::User()->role == "admin") {
-            $categories = Categorie::findOrFail($categorie->id);
+            $categories = Category::findOrFail($id);
 
             $response = [
-                'categories'=>$categories,
+                'categories' => $categories,
 
             ];
             return response()->json($response, 200);
 
-        }   else{
+        } else {
             abort(401);
         }
 

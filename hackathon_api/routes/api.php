@@ -3,9 +3,9 @@
 use App\Http\Controllers\admin\AdminAuthUsers;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\categorie\CategorieController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\RankingController;
+use App\Http\Controllers\student\HistoryController;
+use App\Http\Controllers\student\ProjectController;
+use App\Http\Controllers\student\RankingController;
 use App\Http\Controllers\student\StudentProfileController;
 use App\Http\Controllers\teacher\TeacherRatingController;
 use Illuminate\Http\Request;

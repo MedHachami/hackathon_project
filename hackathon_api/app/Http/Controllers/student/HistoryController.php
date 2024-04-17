@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\student;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class HistoryController extends Controller
@@ -10,7 +10,6 @@ class HistoryController extends Controller
     public function index()
     {
         $user = JWTAuth::user()->load("projects", "projects.rating");
-
         return $user;
     }
 }

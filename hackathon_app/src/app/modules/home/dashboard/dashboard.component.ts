@@ -70,10 +70,17 @@ export class DashboardComponent {
   
   applyFilters() {
     this.filteredProjects = this.projects.filter(project => {
-      const titleMatches = !this.searchTerm || project.name.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const categoryMatches = !this.selectedCategoryId || project.category.id == this.selectedCategoryId;
+      // Check if searchTerm is empty or whitespace
+      const isSearchTermEmpty = !this.searchTerm.trim();
   
-      return titleMatches && categoryMatches;
+      // Check if project name matches the searchTerm if searchTerm is not empty
+      const titleMatches = isSearchTermEmpty || project.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+      
+      // Check if project category matches the selected category
+      const categoryMatches = !this.selectedCategoryId || project.category.id === this.selectedCategoryId;
+  
+      // Return true only if either the title matches or the category matches
+      return (isSearchTermEmpty || titleMatches) && categoryMatches;
     });
   }
   
